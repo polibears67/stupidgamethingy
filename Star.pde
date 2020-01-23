@@ -35,6 +35,7 @@ public class Star {
     if(x<width && x>-width && y<height && y>-height){
       ellipse(x, y, radius, radius);
     }
+    
 
     //translate(0,0,-z);
 
@@ -57,7 +58,10 @@ public class Star {
     
     }
     
-    
+    if(x<-width*universeWidth){ x=width*universeWidth; }
+    if(x>width*universeWidth){ x=-width*universeWidth; }
+    if(y<-height*universeHeight){ y=height*universeHeight; }
+    if(y>height*universeHeight){ y=-height*universeHeight; }
     
   }
 }

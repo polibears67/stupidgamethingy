@@ -1,12 +1,12 @@
 public float xCoor = 0;
 public float yCoor = 0;
-public float universeWidth=1;
-public float universeHeight=1;
+public float universeWidth=3;
+public float universeHeight=3;
 public boolean[] keys;
 
 float norm = 0.05;
 float dirangle=90;
-float speedmult=.05;
+float speedmult=.15;
 float turnspeed=0;
 public float gravitysmallnum=0.000001;
 
@@ -25,11 +25,11 @@ public float cenx;
 public float ceny;
 
 
-int totalStars = int(random(universeWidth*1500, universeHeight*1500));
+int totalStars = int(random(pow(universeWidth,2)*1200, pow(universeHeight,2)*1200));
 Star[] stars = new Star[totalStars];
-int totalPlanets = int(random(1, 1));
+int totalPlanets = int(random(5, 5));
 Planet[] planets = new Planet[totalPlanets];
-Gates gate = new Gates();
+//Gates gate = new Gates();
 
 public void setup() {
   frameRate(60);
@@ -51,13 +51,13 @@ public void setup() {
   }
   for(int i = 0; i < planets.length; i++) {
     planets[i] = new Planet();
-    println("hey");
+    //println("hey");
   }
   
-  gate.update(xCoor,yCoor);
-  gate.drawEnd();
-  gate.playerInEnd(
-  );
+  //gate.update(xCoor,yCoor);
+  //gate.drawEnd();
+  //gate.playerInEnd(
+  //);
   
   
   //println(planets[0].x);
@@ -88,7 +88,7 @@ void draw(){
   //update screen coords
   xCoor-=xVel+xShift;
   yCoor+=yVel+yShift;
-  println(xCoor + "  " + yCoor);
+  //println(xCoor + "  " + yCoor);
 
 
   // weird keypresses
@@ -98,6 +98,7 @@ void draw(){
   if(keys[3]==true){
     turnspeed +=0.1;
   }
+  
   dirangle += turnspeed;
   
   

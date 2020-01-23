@@ -16,7 +16,7 @@ public class Planet{
     x = random(-width*universeWidth, width*universeWidth);
     y = random(-height*universeHeight, height*universeHeight);
     //z = random(-300, 300);
-    doubleradius = random(200, 200);
+    doubleradius = random(100, 400);
     
     red = random(100, 255);
     green = random(100, 255);
@@ -45,7 +45,7 @@ public class Planet{
     ydist=y-ceny;
     //println(dist);
     
-    if(dist>doubleradius/2+50){ //add gravity
+    if(dist>doubleradius/2+40){ //add gravity
       xVel-=force*xdist;    //because distance is always positive //<>//
       yVel-=force*ydist;
       touchingPlanet=false;
@@ -59,7 +59,7 @@ public class Planet{
       touchingPlanet=true;
 
     }
-    
+    println(touchingPlanet);
     
     if (dist<doubleradius/2+50){
       //xVel*=-1;
