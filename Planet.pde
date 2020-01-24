@@ -23,7 +23,7 @@ public class Planet{
     green = random(100, 255);
     blue = random(100, 255);
     
-    println(x + "  " + y);
+    //println(x + "  " + y);
   }
   
   public void show(){

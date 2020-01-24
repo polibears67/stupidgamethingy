@@ -1,12 +1,12 @@
 public float xCoor = 0;
 public float yCoor = 0;
-public float universeWidth=10;
-public float universeHeight=10;
+public float universeWidth=5;
+public float universeHeight=5;
 public boolean[] keys;
 
 float norm = 0.05;
 float dirangle=90;
-float speedmult=.15;
+float speedmult=.1;
 float turnspeed=0;
 public float gravitysmallnum=0.000001;
 
@@ -27,9 +27,9 @@ public float ceny;
 
 int totalStars = int(random(pow(universeWidth,2)*1200, pow(universeHeight,2)*1200));
 Star[] stars = new Star[totalStars];
-int totalPlanets = int(random(8, 8));
+int totalPlanets = int(random(5, 20));
 Planet[] planets = new Planet[totalPlanets];
-//Gates gate = new Gates();
+Gates gate = new Gates();
 
 public void setup() {
   frameRate(60);
@@ -54,10 +54,7 @@ public void setup() {
     //println("hey");
   }
   
-  //gate.update(xCoor,yCoor);
-  //gate.drawEnd();
-  //gate.playerInEnd(
-  //);
+  
   
   
   //println(planets[0].x);
@@ -70,6 +67,14 @@ public void setup() {
 
 
 void draw(){
+  
+  if (!gate.inGate()) {
+    background(0);
+    
+    text("You Won",0,0);
+    
+  } else {
+ 
   /*
   if (playerInEnd()){
     drawEnd();
@@ -225,10 +230,9 @@ void draw(){
 
 
 
-
-
-
-
+  gate.update();
+  gate.show();
+  }
 }
 
 
