@@ -3,6 +3,7 @@ public float yCoor = 0;
 public float universeWidth=5;
 public float universeHeight=5;
 public boolean[] keys;
+public boolean loose = false;
 
 float norm = 0.05;
 float dirangle=90;
@@ -15,7 +16,7 @@ public float yVel = 0;
 public float xShift = 0;
 public float yShift = 0;
 
-public boolean touchingPlanet=false;
+public boolean touchingPlanet=true;
 public int closestPlanet;
 
 public float shipsize=10;
@@ -70,9 +71,15 @@ void draw(){
   
   if (!gate.inGate()) {
     background(0);
+    fill(255);
+    textSize(32);
+    text("You Won",width/2,width/2);
     
-    text("You Won",0,0);
-    
+  } else if(loose){
+    background(0);
+    fill(255);
+    textSize(32);
+    text("You Lost",width/2,width/2);
   } else {
  
   /*

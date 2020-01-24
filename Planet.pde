@@ -63,8 +63,10 @@ public class Planet{
       
       
       if(touchingPlanet==false){
-        xVel=0;
-        yVel=0;
+        //xVel=0;
+        //yVel=0;
+        loose = true;
+        println("on plante");
       }
       touchingPlanet=true;
       //dirangle=planets[closestPlanet].plaangle;
