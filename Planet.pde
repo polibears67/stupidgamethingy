@@ -8,6 +8,7 @@ public class Planet{
   float xdist;
   float ydist;
   float dist;
+  float plaangle;
   
   
   
@@ -22,8 +23,7 @@ public class Planet{
     green = random(100, 255);
     blue = random(100, 255);
     
-    println(x);
-    println(y);
+    println(x + "  " + y);
   }
   
   public void show(){
@@ -34,6 +34,7 @@ public class Planet{
   }
   
   public void update(){
+    //print(dist);
     //println(dist + " " + radius);
     
     
@@ -45,6 +46,13 @@ public class Planet{
     ydist=y-ceny;
     //println(dist);
     
+    // what is direction is the planet from the ship
+    plaangle=degrees(acos(xdist/dist));
+    if(ydist>0){ // if planet is below 
+      plaangle*=-1;
+     }
+    //println (plaangle);
+    
     if(dist>doubleradius/2+40){ //add gravity
       xVel-=force*xdist;    //because distance is always positive //<>//
       yVel-=force*ydist;
@@ -52,23 +60,26 @@ public class Planet{
 
     } 
     else{
+      
+      
       if(touchingPlanet==false){
         xVel=0;
         yVel=0;
       }
       touchingPlanet=true;
-
+      //dirangle=planets[closestPlanet].plaangle;
+      //println(plaangle);
     }
-    println(touchingPlanet);
+    //println(touchingPlanet);
     
-    if (dist<doubleradius/2+50){
+    //if (dist<doubleradius/2+50){
       //xVel*=-1;
       //yVel*=-1;
       
       
       //println("DR= "+ doubleradius/2+50 + "dist= " + dist);
       
-      xShift=20;
+      //xShift=20;
       /* //<>//
                   if (dist<doubleradius/2+50){
         xVel-=force*xdist;    //because distance is always positive
@@ -76,7 +87,7 @@ public class Planet{
       }
       */
       
-    }
+    //}
     
     //println(dist);
     dist= sqrt( (xdist)*(xdist)+(ydist)*(ydist) )   ;

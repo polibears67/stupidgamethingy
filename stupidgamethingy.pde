@@ -1,7 +1,7 @@
 public float xCoor = 0;
 public float yCoor = 0;
-public float universeWidth=3;
-public float universeHeight=3;
+public float universeWidth=10;
+public float universeHeight=10;
 public boolean[] keys;
 
 float norm = 0.05;
@@ -16,7 +16,7 @@ public float xShift = 0;
 public float yShift = 0;
 
 public boolean touchingPlanet=false;
-
+public int closestPlanet;
 
 public float shipsize=10;
 public int shipmass=200;
@@ -27,13 +27,13 @@ public float ceny;
 
 int totalStars = int(random(pow(universeWidth,2)*1200, pow(universeHeight,2)*1200));
 Star[] stars = new Star[totalStars];
-int totalPlanets = int(random(5, 5));
+int totalPlanets = int(random(8, 8));
 Planet[] planets = new Planet[totalPlanets];
 //Gates gate = new Gates();
 
 public void setup() {
   frameRate(60);
-  size(1800,1200);   //size of the window
+  size(1200,800);   //size of the window
   background(0);  //creates a black background
   stroke(255);
   strokeWeight(0);
@@ -63,7 +63,7 @@ public void setup() {
   //println(planets[0].x);
   //println(planets[1].x);
 
-  
+  //planets[0].doubleradius=800;
 }
 
 
@@ -94,12 +94,20 @@ void draw(){
   // weird keypresses
   if(keys[2]==true){
     turnspeed -= 0.1;
+    if(touchingPlanet){
+      dirangle-=5;
+    }
   }
   if(keys[3]==true){
     turnspeed +=0.1;
+    if(touchingPlanet){
+      dirangle+=5;
+    }
+  }
+  if(touchingPlanet==false){
+    dirangle += turnspeed;
   }
   
-  dirangle += turnspeed;
   
   
   /////////-/////////-/////////-/////////-/////////-/////////-/////////-/////////- stars
@@ -154,15 +162,24 @@ void draw(){
     planets[i].update();
     planets[i].show();
     //println("ddd");
+    
   }
     
+  closestPlanet=0;
+  for(int i=0; i>totalPlanets-1; i++){
+    if (planets[i+1].dist>planets[i].dist){
+      closestPlanet=i+1;
+    }
+  
+  }
+  
+  //println("CP "+ closestPlanet);
   
   
-  
-  
-  
-  
-  
+  if(touchingPlanet){
+    //dirangle=planets[closestPlanet].plaangle+=180;
+  }
+  //println(planets[closestPlanet].plaangle+=180);
   
   
   
@@ -235,6 +252,7 @@ void keyReleased()
     keys[1]=false;
   if(keyCode==LEFT)
     keys[2]=false;
+    
   if(keyCode==RIGHT)
     keys[3]=false;
 } 
